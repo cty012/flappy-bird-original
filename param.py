@@ -10,12 +10,12 @@ subtitle_pos = (500, 600)
 
 # GAME
 # env
-gravity = 2
+gravity = 0.5
 # bird
 pos = (400, 375)
-speed = 6
-max_vel = 30
-boost = 30
+speed = 1.5
+max_vel = 18
+boost = 18
 bird_size = 40
 # obstacle
 obs_width = 150

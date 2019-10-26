@@ -4,7 +4,7 @@ from characters import *
 from utils import *
 
 
-def start(screen, bird):
+def start(screen, clock, bird):
     # draw
     screen.fill(p.background)
     bird.show(screen)
@@ -24,11 +24,11 @@ def start(screen, bird):
             return 'game'
 
     # wait
-    pygame.time.delay(1)
+    clock.tick_busy_loop(80)
     return 'start'
 
 
-def game(screen, bird, obs_list, frame):
+def game(screen, clock, bird, obs_list, frame):
     # draw
     screen.fill(p.background)
     bird.show(screen)
@@ -62,11 +62,11 @@ def game(screen, bird, obs_list, frame):
         obs.move()
 
     # wait
-    pygame.time.delay(1)
+    clock.tick_busy_loop(80)
     return 'game'
 
 
-def fail(screen, bird, obs_list):
+def fail(screen, clock, bird, obs_list):
     # draw
     text = 'You Have Failed With a Score of ???'
     showText(screen, text, p.title_pos, 'freesansbold.ttf', 50, (0, 0, 0))
@@ -87,5 +87,5 @@ def fail(screen, bird, obs_list):
             return 'game'
 
     # wait
-    pygame.time.delay(1)
+    clock.tick_busy_loop(80)
     return 'fail'

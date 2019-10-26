@@ -5,6 +5,7 @@ import scenes
 pygame.init()
 
 screen = pygame.display.set_mode(p.size)
+clock = pygame.time.Clock()
 bird = Bird()
 obs_list = []
 frame = Frame()
@@ -12,10 +13,10 @@ frame = Frame()
 flag = 'start'
 while flag != 'quit':
     if flag == 'start':
-        flag = scenes.start(screen, bird)
+        flag = scenes.start(screen, clock, bird)
     elif flag == 'game':
-        flag = scenes.game(screen, bird, obs_list, frame)
+        flag = scenes.game(screen, clock, bird, obs_list, frame)
     elif flag == 'fail':
-        flag = scenes.fail(screen, bird, obs_list)
+        flag = scenes.fail(screen, clock, bird, obs_list)
 
 pygame.quit()
