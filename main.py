@@ -17,6 +17,8 @@ while flag != 'quit':
         flag = scenes.start(screen, clock, bird)
     elif flag == 'game':
         flag = scenes.game(screen, clock, bird, obs_list, frame, scoreboard)
+    elif flag == 'pause':
+        flag = scenes.pause(screen, clock)
     elif flag == 'fail':
         flag = scenes.fail(screen, clock, bird, obs_list, scoreboard)
 

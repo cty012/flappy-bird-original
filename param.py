@@ -12,6 +12,11 @@ subtitle_pos = (500, 600)
 # GAME
 # env
 gravity = 0.5
+#pause
+pause_rad = 70
+pause_lwidth = 30
+pause_rwidth = 45
+pause_hight = 90
 # bird
 pos = (400, 375)
 speed = 1.5

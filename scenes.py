@@ -60,6 +60,9 @@ def game(screen, clock, bird, obs_list, frame, scoreboard):
         elif e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE:
             bird.flap()
             print('FLAP!!!')
+        elif e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+            print('PAUSE!!!')
+            return 'pause'
 
     # move
     if ObsGenerator.needNewObs(obs_list):
@@ -71,6 +74,35 @@ def game(screen, clock, bird, obs_list, frame, scoreboard):
     # wait
     clock.tick_busy_loop(80)
     return 'game'
+
+
+def pause(screen, clock):
+    # draw
+    # TODO: Draw a circle with play symbol
+    pos = (int(0.5 * p.size[0]), int(0.5 * p.size[1]))
+    pygame.draw.circle(screen, p.background, pos, p.pause_rad, 0)
+    pygame.draw.circle(screen, (0, 0, 0), pos, p.pause_rad, 5)
+    pointlist = ((int(pos[0] - p.pause_lwidth), int(pos[1] - 0.5 * p.pause_hight)),
+                 (int(pos[0] - p.pause_lwidth), int(pos[1] + 0.5 * p.pause_hight)),
+                 (int(pos[0] + p.pause_rwidth), int(pos[1])))
+    pygame.draw.polygon(screen, (0, 0, 0), pointlist, 0)
+    pygame.display.update()
+
+    # detect operation
+    events = pygame.event.get()
+    for e in events:
+        if e.type == pygame.QUIT:
+            return 'quit'
+        elif e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE:
+            print('CONTINUE!!!')
+            return 'game'
+        elif e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+            print('CONTINUE!!!')
+            return 'game'
+
+    # wait
+    clock.tick_busy_loop(80)
+    return 'pause'
 
 
 def fail(screen, clock, bird, obs_list, scoreboard):
@@ -87,12 +119,13 @@ def fail(screen, clock, bird, obs_list, scoreboard):
         if e.type == pygame.QUIT:
             return 'quit'
         elif e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE:
-            bird.vel = p.init_vel
-            bird.y = p.pos[1]
-            obs_list *= 0
-            scoreboard.refresh()
+            init(bird, obs_list, scoreboard)
             print('START!!!')
             return 'game'
+        elif e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
+            init(bird, obs_list, scoreboard)
+            print('MENU!!!')
+            return 'start'
 
     # wait
     clock.tick_busy_loop(80)
