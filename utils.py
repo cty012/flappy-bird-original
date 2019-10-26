@@ -21,13 +21,20 @@ class CollisionDetector:
     def detect(obj1, obj2):
         if isinstance(obj1, Bird) and isinstance(obj2, Obstacle):
             xcenter = (obj2.x + 0.5 * obj2.width)
+            # if center within boundary created by obstacle
             if abs(obj1.x - xcenter) <= 0.5 * obj2.width:
                 return abs(obj1.y - obj2.open_pos) >= obj2.open_rad - obj1.size
-            elif abs(obj1.x - xcenter) <= obj1.size + 0.5 * obj2.width and abs(obj1.y - obj2.open_pos) < obj2.open_rad:
-                y1 = obj2.open_rad - abs(obj1.y - obj2.open_pos)
-                x1 = abs(obj1.x - xcenter) - 0.5 * obj2.width
-                r1 = obj1.size
-                return x1 ** 2 + y1 ** 2 <= r1 ** 2
+            # if center not within boundary created by obstacle
+            elif abs(obj1.x - xcenter) <= obj1.size + 0.5 * obj2.width:
+                # if aligned with opening
+                if abs(obj1.y - obj2.open_pos) < obj2.open_rad:
+                    y1 = obj2.open_rad - abs(obj1.y - obj2.open_pos)
+                    x1 = abs(obj1.x - xcenter) - 0.5 * obj2.width
+                    r1 = obj1.size
+                    return x1 ** 2 + y1 ** 2 <= r1 ** 2
+                # if not aligned with opening
+                else:
+                    return True
         elif isinstance(obj1, Bird) and isinstance(obj2, Frame):
             return obj1.y - obj1.size <= 0 or obj1.y + obj1.size >= p.size[1]
         return False
@@ -48,4 +55,5 @@ class ObsGenerator:
             obs = obs_list.pop(0)
             obs.x = p.size[0]
             obs.open_pos = open_pos
+            obs.scores = False
         obs_list.append(obs)

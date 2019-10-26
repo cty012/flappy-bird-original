@@ -9,14 +9,15 @@ clock = pygame.time.Clock()
 bird = Bird()
 obs_list = []
 frame = Frame()
+scoreboard = Scoreboard()
 
 flag = 'start'
 while flag != 'quit':
     if flag == 'start':
         flag = scenes.start(screen, clock, bird)
     elif flag == 'game':
-        flag = scenes.game(screen, clock, bird, obs_list, frame)
+        flag = scenes.game(screen, clock, bird, obs_list, frame, scoreboard)
     elif flag == 'fail':
-        flag = scenes.fail(screen, clock, bird, obs_list)
+        flag = scenes.fail(screen, clock, bird, obs_list, scoreboard)
 
 pygame.quit()
