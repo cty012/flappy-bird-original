@@ -5,6 +5,8 @@ size = (1000, 750)
 background = (255, 255, 255)
 
 # MENU
+title_pos = (500, 200)
+subtitle_pos = (500, 600)
 
 # GAME
 # env

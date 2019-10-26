@@ -1,10 +1,19 @@
 from random import Random
 import param as p
 from characters import *
+import pygame
 
 
 def sqrDist(pos1, pos2):
     return (pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2
+
+
+def showText(screen, text, pos, font_name, font_size, color):
+    font = pygame.font.Font(font_name, font_size)
+    textMsg = font.render(text, True, color)
+    rect = textMsg.get_rect()
+    rect.center = pos
+    screen.blit(textMsg, rect)
 
 
 class CollisionDetector:
