@@ -5,6 +5,8 @@ import scenes
 pygame.init()
 
 screen = pygame.display.set_mode(p.size)
+pygame.display.set_caption('Flappy Circular Bird Floating in Vacuum')
+pygame.display.set_icon(pygame.image.load('icon.png'))
 clock = pygame.time.Clock()
 bird = Bird()
 obs_list = []

@@ -8,7 +8,7 @@ def start(screen, clock, bird):
     # draw
     screen.fill(p.background)
     bird.show(screen)
-    text = 'Flappy Round Bird Floating in Vacuum'
+    text = 'Flappy Circular Bird Floating in Vacuum'
     showText(screen, text, p.title_pos, p.font, 50, (0, 0, 0))
     text = 'press "Space" to play'
     showText(screen, text, p.subtitle_pos, p.font, 30, (0, 0, 0))
