@@ -65,11 +65,12 @@ def game(screen, clock, bird, obs_list, frame, scoreboard):
             return 'pause'
 
     # move
+    dT = clock.get_time() * .06
     if ObsGenerator.needNewObs(obs_list):
         ObsGenerator.getNewObs(obs_list)
-    bird.move()
+    bird.move(dT)
     for obs in obs_list:
-        obs.move()
+        obs.move(dT)
 
     # wait
     clock.tick_busy_loop(80)

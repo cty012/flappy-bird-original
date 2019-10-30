@@ -24,9 +24,9 @@ class Bird(pygame.sprite.Sprite):
         if self.vel > self.max_vel:
             self.vel = self.max_vel
 
-    def move(self):
-        self.y -= self.vel
-        self.vel -= p.gravity
+    def move(self, dT):
+        self.y -= self.vel * dT
+        self.vel -= p.gravity * dT
         if self.vel < -self.max_vel:
             self.vel = -self.max_vel
 
@@ -48,8 +48,8 @@ class Obstacle(pygame.sprite.Sprite):
         self.color = (0, 0, 255)
         self.scores = False
 
-    def move(self):
-        self.x -= self.vel
+    def move(self, dT):
+        self.x -= self.vel * dT
 
     def score(self):
         if not self.scores and self.x + 0.5 * self.width + 2 * p.bird_size < p.pos[0]:
