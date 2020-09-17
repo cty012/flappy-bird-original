@@ -16,6 +16,3 @@ If you have questions, email daniel.cao@prismsus.org
 Art design: Daniel Cao
 
 Programmer: Daniel Cao
-
-## Licence
-PRISMSoft Inc.
